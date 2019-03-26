@@ -1,0 +1,130 @@
+/*********************************************
+ * OPL 12.6.1.0 Data
+ * Author: Liming
+ * Creation Date: Jun 30, 2017 at 4:55:56 PM
+ *********************************************/
+ 
+DBConnection db("oledb","un_lm/un_lm/AREA_PROJECT/SRPDB");
+
+lcs from DBRead(db,"select a.Routingindex  from  PlaneRoutes_1106_new    a ");
+
+llcap from DBRead(db,"select a.Routingindex ,((len(a.PlaneRoute)-3)/6)*a.Capacity as caps from  PlaneRoutes_1106_new    a ");
+
+oapt from DBRead(db,"select a.Routingindex,left(a.planeroute,3) as s from  PlaneRoutes_1106_new    a ");
+
+dapt from DBRead(db,"select a.Routingindex,right(a.planeroute,3) as d from  PlaneRoutes_1106_new    a ");
+
+cps from DBRead(db,"select a.Routingindex,a.PlaneRoute from  PlaneRoutes_1106_new    a ");
+
+ceq from DBRead(db,"select a.Routingindex,a.Aircrafttype from  PlaneRoutes_1106_new    a ");
+
+rtc from DBRead(db,"select a.Routingindex,a.Routingcost from  PlaneRoutes_1106_new    a ");
+
+csa from DBRead(db,"select a.Routingindex,a.legs1 from  PlaneRoutes_1106_new    a ");
+
+csb from DBRead(db,"select a.Routingindex,a.legs2 from  PlaneRoutes_1106_new    a ");
+
+csc from DBRead(db,"select a.Routingindex,a.legs3 from  PlaneRoutes_1106_new    a ");
+
+csd from DBRead(db,"select a.Routingindex,a.legs4 from  PlaneRoutes_1106_new    a ");
+
+dfe from DBRead(db,"select a.Routingindex,case when left(a.planeroute,3)=right(a.planeroute,3) then 0 else 1 end as duifei from  PlaneRoutes_1106_new a ");
+
+grp from DBRead(db,"select a.Routingindex,cast(a.denrnk as int) from  PlaneRoutes_1106_new    a ");
+
+//dep1 from DBRead(db,"select a.Routingindex,a.hdep1 from  PlaneRoutes_1106_new    a ");
+
+//dep2 from DBRead(db,"select a.Routingindex,a.hdep2 from  PlaneRoutes_1106_new    a ");
+
+//arr1 from DBRead(db,"select a.Routingindex,a.harr1 from  PlaneRoutes_1106_new    a ");
+
+//arr2 from DBRead(db,"select a.Routingindex,a.harr2 from  PlaneRoutes_1106_new    a ");
+
+flg from DBRead(db,"select a.Routingindex,a.occflg from  PlaneRoutes_1106_new   a ");
+
+mst from DBRead(db,"select a.Routingindex,cast(a.mustsl as int) as mustsl from  PlaneRoutes_1106_new     a ");
+
+fab from DBRead(db,"select a.Routingindex,a.Capacity from  PlaneRoutes_1106_new     a ");
+
+flt1 from DBRead(db,"select a.Routingindex,left(a.Sector1,4)+RIGHT(a.Sector1,3) as od from  PlaneRoutes_1106_new     a ");
+
+flt2 from DBRead(db,"select a.Routingindex,left(a.Sector2,4)+RIGHT(a.Sector2,3) as od from  PlaneRoutes_1106_new     a ");
+
+flt3 from DBRead(db,"select a.Routingindex,left(a.Sector3,4)+RIGHT(a.Sector3,3) as od from  PlaneRoutes_1106_new     a ");
+
+flt4 from DBRead(db,"select a.Routingindex,left(a.Sector4,4)+RIGHT(a.Sector4,3) as od from  PlaneRoutes_1106_new     a ");
+
+typeE from DBRead(db,"select a.Routingindex,a.typeE from  PlaneRoutes_1106_new     a ");
+
+typeEM from DBRead(db,"select a.Routingindex,case when ((a.planeroute like '%-E-HGH%' or a.typeE='E') and a.planeroute like '%HGH-M-%' and a.s=a.d) then 'EM' else '' end TypeEM  from PlaneRoutes_1106_new   a ");
+
+lbs from DBRead(db," select a.flowindex from PalletFlows_1106_new    a ");
+
+hdc from DBRead(db," select a.flowindex,a.Penaltyfactor  from PalletFlows_1106_new    a ");
+
+bsa from DBRead(db," select a.flowindex,a.rsubid1 from PalletFlows_1106_new    a ");
+
+bsb from DBRead(db," select a.flowindex,a.rsubid2 from PalletFlows_1106_new    a ");
+
+las from DBRead(db,"select a.id,a.productindex,a.flowindex from AirportODs_1106_new     a ");
+
+lts from DBRead(db,"select a.id,a.loopstring from AirportODs_1106_new     a ");
+
+bcp from DBRead(db,"select a.id,a.sanhangtwt from AirportODs_1106_new      a ");
+
+ama from DBRead(db,"select a.id,a.wtper1D1200 from AirportODs_1106_new        a");
+ 
+pma from DBRead(db,"select a.id,a.wtper1D1800 from AirportODs_1106_new        a");
+ 
+atp from DBRead(db,"select a.id,a.prtype from AirportODs_1106_new      a ");
+
+oan from DBRead(db,"select a.id,a.rusbidtype from AirportODs_1106_new      a ");
+
+asa from DBRead(db,"select a.id,a.rsubid1 from AirportODs_1106_new        a ");
+
+asb from DBRead(db,"select a.id,a.rsubid2 from AirportODs_1106_new        a ");
+
+tsc from DBRead(db,"select a.id,a.Handlingcost from AirportODs_1106_new     a ");
+
+vol from DBRead(db,"select a.id,cast(a.allwtfull as float) as allwtfull from AirportODs_1106_new     a "); 
+
+inc from DBRead(db,"select a.id,cast(a.income as float) income from AirportODs_1106_new     a "); 
+
+mas from DBRead(db,"select a.id,cast(a.wtperfull  as float) as wtper from AirportODs_1106_new     a ");
+
+acnum from DBRead(db,"select a.* from aircraftcnt_1106   a");
+
+//aptsall from DBRead(db,"select distinct a.s as apt from AirportODs_1106_new   a");
+
+apt_all from DBRead(db,"select a.apt as num from  aptmax a");
+
+apt_hub from DBRead(db,"select distinct a.s1 as apt from APT_29 a");
+
+apt_nmx from DBRead(db,"select a.apt,CAST(a.num as int) as num from  aptmax a");
+
+rsts from DBRead(db,"select a.productindex,ROW_NUMBER() over(partition by productindex order by wtperfull asc) tqe  from AirportODs_1106_new   a ");
+
+tqe from DBRead(db,"select a.id,ROW_NUMBER() over(partition by productindex order by wtperfull asc) tqe  from AirportODs_1106_new   a ");
+
+scs from DBRead(db,"select distinct pc from (select legs1 pc from PlaneRoutes_1106_new   union select legs2 from PlaneRoutes_1106_new   union select legs3 from PlaneRoutes_1106_new   union select legs4 from PlaneRoutes_1106_new  ) x where pc is not null");
+
+gps from DBRead(db,"select distinct a.denrnk from  PlaneRoutes_1106_new    a where a.denrnk>0");
+
+tms from DBRead(db,"select distinct pc from (select hdep1 pc from PlaneRoutes_1106_new   union select hdep2 from PlaneRoutes_1106_new   union select harr1 from PlaneRoutes_1106_new   union select harr2 from PlaneRoutes_1106_new  ) x where pc is not null");
+
+odapts from DBRead(db,"select distinct left(a.planeroute,3) as oapt,right(a.planeroute,3) as dapt,aircrafttype from PlaneRoutes_1106_new   a where a.duifei=1");
+
+aptnew from DBRead(db,"select distinct a.s as apt from AirportODs_1106_new  a  except select a.apt from  aptmax a ");
+
+DBExecute(db,"drop table AirLinePlanning_Result12_1106_new  ");
+DBExecute(db,"drop table AirLinePlanning_Result22_1106_new  ");
+DBExecute(db,"drop table AirLinePlanning_Result32_1106_new  ");
+
+DBExecute(db,"create table AirLinePlanning_Result12_1106_new  (Planeid bigint, Build int)");
+DBExecute(db,"create table AirLinePlanning_Result22_1106_new  (Flowid bigint, Allocate float)");
+DBExecute(db,"create table AirLinePlanning_Result32_1106_new  (Prodid bigint,Routeid bigint,Handlingcost float,RouteShare float)");
+
+
+Result1 to DBUpdate(db,"INSERT INTO AirLinePlanning_Result12_1106_new  (Planeid,Build) VALUES(?,?)");
+Result2 to DBUpdate(db,"INSERT INTO AirLinePlanning_Result22_1106_new  (Flowid,Allocate) VALUES(?,?)");
+Result3 to DBUpdate(db,"INSERT INTO AirLinePlanning_Result32_1106_new  (Prodid,Routeid,Handlingcost,RouteShare) VALUES(?,?,?,?)");
